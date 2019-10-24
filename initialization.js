@@ -2,12 +2,7 @@ fabric.Object.prototype.selectable = false;
 const canvas = new fabric.Canvas('canvasId');
 const modal = document.getElementById('modal');
 modal.addEventListener('click', closeModal);
-document.getElementById('newGame').addEventListener('click', e => {
-  e.stopPropagation();
-  e.preventDefault()
-  closeModal();
-  modal.style.display = 'block';
-});
+document.getElementById('newGame').addEventListener('click', initGame);
 document.getElementById('no').addEventListener('click', closeModal);
 document.getElementById('yes').addEventListener('click', () => {
   closeModal();
