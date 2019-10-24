@@ -39,9 +39,4 @@ for (let i = 0; i < 10; i++) {
   }
 }
 
-
-function getCoordinates(position) {
-  return Math.floor(position / UNIT)
-}
-
 canvas.renderAll();

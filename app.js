@@ -1,13 +1,5 @@
 // canvas.on('mouse:down', function (event) {
-//   const { x, y } = event.pointer;
-//   const coorX = getCoordinates(x);
-//   const coorY = getCoordinates(y);
-//   allSquares[coorX][coorY] = makeField(coorX * UNIT, coorY * UNIT, 'green');
-//   allSquares[coorX][coorY].selected = true;
-
-//   canvas.add(allSquares[coorX][coorY]);
 //   canvas.off('mouse:down')
-
 
 //   showFreeFields(coorX, coorY)
 //     .filter(([x, y]) => x > -1 && y > -1 && x < 10 && y < 10)
@@ -34,8 +26,6 @@
 //       })
 
 //       canvas.add(allSquares[x][y]);
-//     });
-// });
 
 
 canvas.on('mouse:down', function (event) {
@@ -43,7 +33,7 @@ canvas.on('mouse:down', function (event) {
   const coorX = element.left / UNIT;
   const coorY = element.top / UNIT;
   if (FIRST_TIME) {
-    selectFildAndMarkOthers(element, coorX, coorY);
+    selectFieldAndMarkOthers(element, coorX, coorY);
     FIRST_TIME = false;
     return;
   }
@@ -51,32 +41,7 @@ canvas.on('mouse:down', function (event) {
 
   if (allSquares[coorX][coorY].marked) {
     removeMarks(coorX, coorY);
-    element.set('fill', '#ccc')
+    selectFieldAndMarkOthers(element, coorX, coorY);
   }
 });
 
-function selectFildAndMarkOthers(el, x, y) {
-  el.set('fill', '#ccc');
-  allSquares[x][y].selected = true;
-
-  // select surrounding fields
-  showFreeFields(x, y)
-    .filter(([x, y]) => x > -1 && y > -1 && x < 10 && y < 10)
-    .forEach(([x, y]) => markFields(x, y))
-}
-
-function markFields(x, y) {
-  allSquares[x][y].canvas.set('fill', 'pink');
-  allSquares[x][y].marked = true;
-  // allSquares[x][y].
-}
-
-function removeMarks(x, y) {
-  allSquares.forEach(block => {
-    block.forEach(square => {
-      if (square.marked && !square.selected) {
-        square.canvas.set('fill', 'white')
-      }
-    })
-  })
-}
