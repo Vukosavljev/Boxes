@@ -37,3 +37,10 @@
 //     });
 // });
 
+
+canvas.on('mouse:down', function (event) {
+  const element = event.target
+  if (element instanceof fabric.Rect && !element.selected) {
+    console.log(element)
+  }
+});
