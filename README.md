@@ -4,4 +4,4 @@ Game 100 Boxes.
 
 Used plain HTML, CSS and JS.
 
-Fabric.js library is usedF for canvas.
+Fabric.js library is used for canvas.
