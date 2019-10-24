@@ -11,12 +11,16 @@
             content="ie=edge"
         >
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.4.0/fabric.js"></script>
+        <link rel="stylesheet" href="style.css">
         <title>100 Boxes</title>
     </head>
     <body>
+        <h1 class="title">CLICK ALL 100 BOXES</h1>
+        <button id="newGame">New Game</button>
         <div class="canvas-holder">
             <canvas
                 id="canvasId"
+                class="canvas-element"
                 width="400px"
                 height="400px"
             ></canvas>
@@ -24,6 +28,5 @@
 
         <script src="./helpFunctions.js"></script>
         <script src="./initialization.js"></script>
-        <script src="./app.js"></script>
     </body>
 </html>
