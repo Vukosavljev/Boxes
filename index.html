@@ -32,7 +32,10 @@
             id="modal"
             class="underlay"
         >
-            <div class="modal">
+            <div
+                class="modal"
+                onclick="event.stopPropagation()"
+            >
                 <h3>End game!</h3>
                 <p>You lost this game.</p>
                 <p>Dou you want to play it again?</p>

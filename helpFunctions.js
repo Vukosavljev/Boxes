@@ -29,7 +29,6 @@ function initSquares() {
 }
 
 function initGame() {
-  modal.style.display = 'none';
   FIRST_TIME = true;
   initGrid();
   initSquares();
