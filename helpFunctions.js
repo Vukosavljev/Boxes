@@ -28,6 +28,14 @@ function initSquares() {
   }
 }
 
+function initGame() {
+  modal.style.display = 'none';
+  FIRST_TIME = true;
+  initGrid();
+  initSquares();
+  registeClickEvent();
+}
+
 const makeField = (x, y, color = 'white') => {
   return new fabric.Rect({
     left: x,
@@ -78,7 +86,7 @@ function selectFieldAndMarkOthers(el, x, y) {
     .filter(([x, y]) => x > -1 && y > -1 && x < 10 && y < 10 && !ALL_SQUARES[x][y].selected);
 
   if (surroundingFields.length === 0) {
-    GAME_OVER = true;
+    modal.style.display = 'block';
     return;
   }
 
@@ -91,4 +99,8 @@ function propsForLine() {
     strokeWidth: 1,
     selectable: false,
   }
+}
+
+function closeModal() {
+  modal.style.display = 'none';
 }

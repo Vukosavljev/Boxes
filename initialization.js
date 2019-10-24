@@ -1,22 +1,17 @@
 fabric.Object.prototype.selectable = false;
 const canvas = new fabric.Canvas('canvasId');
-let ALL_SQUARES = [];
-
-let FIRST_TIME = true;
-let GAME_OVER = false;
-
-initGrid();
-initSquares();
-registeClickEvent();
-
-document.getElementById('newGame').addEventListener('click', () => {
-  FIRST_TIME = true;
-  GAME_OVER = false;
-  initGrid();
-  initSquares();
-  registeClickEvent();
+const modal = document.getElementById('modal');
+document.getElementById('newGame').addEventListener('click', initGame);
+document.getElementById('no').addEventListener('click', closeModal);
+document.getElementById('yes').addEventListener('click', () => {
+  closeModal();
+  initGame();
 })
+let ALL_SQUARES = [];
+let showGameOver = false;
+let FIRST_TIME = true;
 
+initGame()
 
 function registeClickEvent() {
   canvas.on('mouse:down', function (event) {
@@ -56,25 +51,3 @@ function setColor(e, color) {
     }
   }
 }
-
-//     .forEach(([x, y]) => {
-//       allSquares[x][y] = makeField(x * UNIT, y * UNIT, 'pink');
-//       allSquares[x][y].on('mouseover', e => {
-//         e.target.set('fill', 'yellow');
-//         canvas.add(allSquares[x][y]);
-//         canvas.renderAll();
-//       });
-
-//       allSquares[x][y].on('mouseout', e => {
-//         e.target.set('fill', 'pink')
-//         canvas.renderAll();
-//       });
-
-//       allSquares[x][y].on('mousedown', e => {
-//         allSquares[x][y].off('mouseout');
-//         allSquares[x][y].off('mouseoover');
-//         e.target.set('fill', 'blue');
-//         allSquares[x][y].selected = true;
-//         // reset fields
-//         canvas.renderAll();
-//       })
