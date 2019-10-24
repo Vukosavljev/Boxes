@@ -1,6 +1,9 @@
 fabric.Object.prototype.selectable = false;
 const canvas = new fabric.Canvas('canvasId');
+const allSquares = [];
 const UNIT = 40;
+let FIRST_TIME = true;
+
 // Init grid
 for (let i = 0; i <= 400; i += UNIT) {
   canvas.add(new fabric.Line([i, 0, i, 400], propsForLine()));
@@ -21,13 +24,13 @@ function propsForLine() {
 }
 
 // init squares
-const allSquares = [];
 for (let i = 0; i < 10; i++) {
   allSquares.push([])
   for (let j = 0; j < 10; j++) {
     allSquares[i].push(
       {
         selected: false,
+        marked: false,
         canvas: makeField(i * 40, j * 40),
         coordinate: [i * UNIT, j * UNIT]
       }
@@ -35,44 +38,10 @@ for (let i = 0; i < 10; i++) {
     canvas.add(allSquares[i][j].canvas);
   }
 }
-console.log(allSquares)
 
 
 function getCoordinates(position) {
   return Math.floor(position / UNIT)
 }
 
-function showFreeFields(x, y) {
-  const allFields = [
-    [x, y - 3],
-    [x + 2, y - 2],
-    [x + 3, y],
-    [x + 2, y + 2],
-    [x, y + 3],
-    [x - 2, y + 2],
-    [x - 3, y],
-    [x - 2, y - 2]
-  ]
-  return allFields
-}
-
-function makeField(x, y, color = 'white') {
-  const rect = new fabric.Rect({
-    left: x,
-    top: y,
-    fill: color,
-    width: UNIT - 0.5,
-    height: UNIT - 0.5,
-    selectable: false,
-  })
-
-  rect.on('moudedown', () => {
-    console.log(123)
-    canvas.renderAll();
-  })
-
-  return rect
-}
-
 canvas.renderAll();
-console.log(canvas)
