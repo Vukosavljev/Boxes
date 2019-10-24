@@ -10,12 +10,12 @@ function initGrid() {
 }
 
 function initSquares() {
-  allSquares = [];
+  ALL_SQUARES = [];
 
   for (let i = 0; i < 10; i++) {
-    allSquares.push([])
+    ALL_SQUARES.push([])
     for (let j = 0; j < 10; j++) {
-      allSquares[i].push(
+      ALL_SQUARES[i].push(
         {
           selected: false,
           marked: false,
@@ -23,7 +23,7 @@ function initSquares() {
           coordinate: [i * UNIT, j * UNIT]
         }
       );
-      canvas.add(allSquares[i][j].canvas);
+      canvas.add(ALL_SQUARES[i][j].canvas);
     }
   }
 }
@@ -53,14 +53,14 @@ const showFreeFields = (x, y) => (
 )
 
 function markFields(x, y) {
-  if (!allSquares[x][y].selected) {
-    allSquares[x][y].canvas.set('fill', 'pink');
-    allSquares[x][y].marked = true;
+  if (!ALL_SQUARES[x][y].selected) {
+    ALL_SQUARES[x][y].canvas.set('fill', 'pink');
+    ALL_SQUARES[x][y].marked = true;
   }
 }
 
 function removeMarks(x, y) {
-  allSquares.forEach(block => {
+  ALL_SQUARES.forEach(block => {
     block.forEach(square => {
       if (square.marked && !square.selected) {
         square.canvas.set('fill', 'white');
@@ -72,10 +72,10 @@ function removeMarks(x, y) {
 
 function selectFieldAndMarkOthers(el, x, y) {
   el.set('fill', '#ccc');
-  allSquares[x][y].selected = true;
+  ALL_SQUARES[x][y].selected = true;
 
   const surroundingFields = showFreeFields(x, y)
-    .filter(([x, y]) => x > -1 && y > -1 && x < 10 && y < 10 && !allSquares[x][y].selected);
+    .filter(([x, y]) => x > -1 && y > -1 && x < 10 && y < 10 && !ALL_SQUARES[x][y].selected);
 
   if (surroundingFields.length === 0) {
     GAME_OVER = true;

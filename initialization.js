@@ -1,6 +1,6 @@
 fabric.Object.prototype.selectable = false;
 const canvas = new fabric.Canvas('canvasId');
-let allSquares = [];
+let ALL_SQUARES = [];
 
 let FIRST_TIME = true;
 let GAME_OVER = false;
@@ -25,11 +25,12 @@ function registeClickEvent() {
     const coorY = element.top / UNIT;
     if (FIRST_TIME) {
       selectFieldAndMarkOthers(element, coorX, coorY);
+      registerHover(coorX, coorY);
       FIRST_TIME = false;
       return;
     }
 
-    if (allSquares[coorX][coorY].marked) {
+    if (ALL_SQUARES[coorX][coorY].marked) {
       removeMarks(coorX, coorY);
       selectFieldAndMarkOthers(element, coorX, coorY);
     }
@@ -38,10 +39,24 @@ function registeClickEvent() {
   canvas.renderAll();
 }
 
-//   canvas.off('mouse:down')
+function registerHover() {
+  canvas.on('mouse:over', e => setColor(e, '#aaa')
+  );
+  canvas.on('mouse:out', e => setColor(e, 'pink'));
+}
 
-//   showFreeFields(coorX, coorY)
-//     .filter(([x, y]) => x > -1 && y > -1 && x < 10 && y < 10)
+function setColor(e, color) {
+  const el = e.target;
+  if (el) {
+    const x = el.left / UNIT;
+    const y = el.top / UNIT;
+    if (ALL_SQUARES[x][y].marked) {
+      ALL_SQUARES[x][y].canvas.set('fill', color);
+      canvas.renderAll();
+    }
+  }
+}
+
 //     .forEach(([x, y]) => {
 //       allSquares[x][y] = makeField(x * UNIT, y * UNIT, 'pink');
 //       allSquares[x][y].on('mouseover', e => {

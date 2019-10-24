@@ -7,6 +7,20 @@
 .title {
   text-align: center;
 }
+
+.button-holder {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.canvas-holder {
+  display: flex;
+  justify-content: center;
+}
+
 .canvas-element {
+  margin-top: 3rem;
+  display: block;
   border: 1px solid black;
 }
