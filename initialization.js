@@ -1,5 +1,7 @@
 fabric.Object.prototype.selectable = false;
 const canvas = new fabric.Canvas('canvasId');
+canvas.hoverCursor = 'pointer';
+canvas.selection = false;
 const modal = document.getElementById('modal');
 
 modal.addEventListener('click', closeModal);
@@ -50,6 +52,10 @@ function registeClickEvent() {
       registerHover(coorX, coorY);
       FIRST_TIME = false;
       return;
+    }
+
+    if (ALL_SQUARES.every(num => num.every(n => n.selected === true))) {
+      alert('Congratulation, you clicked all 100 boxes successfully!')
     }
 
     if (ALL_SQUARES[coorX][coorY].marked) {

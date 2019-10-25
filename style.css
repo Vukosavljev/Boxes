@@ -36,6 +36,7 @@ button:hover {
 .canvas-holder {
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .canvas-element {
