@@ -12,7 +12,7 @@ document.getElementById('yes').addEventListener('click', () => {
 let ALL_SQUARES = [];
 let FIRST_TIME = true;
 
-initGame()
+initGame();
 
 function registeClickEvent() {
   canvas.on('mouse:down', function (event) {
@@ -70,14 +70,14 @@ function initGame() {
   ALL_SQUARES = [];
 
   for (let i = 0; i < 10; i++) {
-    ALL_SQUARES.push([])
+    ALL_SQUARES.push([]);
     for (let j = 0; j < 10; j++) {
       ALL_SQUARES[i].push(
         {
           selected: false,
           marked: false,
           canvas: makeField(i * 40, j * 40),
-          coordinate: [i * UNIT, j * UNIT]
+          coordinate: [i * UNIT, j * UNIT],
         }
       );
       canvas.add(ALL_SQUARES[i][j].canvas);
@@ -106,7 +106,7 @@ const showFreeFields = (x, y) => (
     [x, y + 3],
     [x - 2, y + 2],
     [x - 3, y],
-    [x - 2, y - 2]
+    [x - 2, y - 2],
   ]
 )
 
