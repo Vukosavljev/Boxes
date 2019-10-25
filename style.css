@@ -13,6 +13,7 @@ button {
   border-radius: 6px;
   border: 0.5px solid rgba(53, 53, 53, 0.3);
   background: rgb(255, 164, 59);
+  outline: none;
 }
 button:hover {
   color: #fff;
@@ -63,6 +64,11 @@ button:hover {
   border: 2px solid #ccc;
   border-radius: 10px;
 }
+
+#modal p {
+  margin: 5px;
+}
+
 #modal {
   display: none;
 }
@@ -74,5 +80,5 @@ button:hover {
 .modal-button {
   display: flex;
   justify-content: space-around;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }

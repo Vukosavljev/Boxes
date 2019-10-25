@@ -46,10 +46,6 @@ function registeClickEvent() {
     const coorX = element.left / UNIT;
     const coorY = element.top / UNIT;
     if (FIRST_TIME) {
-      // fabric.Image.fromURL("./assets/images/dot.jpg", (myImg) => {
-      //   const img = myImg.set({ top: coorX, left: coorY, width: '10', height: '10' })
-      //   canvas.add(img)
-      // });
       selectFieldAndMarkOthers(element, coorX, coorY);
       registerHover(coorX, coorY);
       FIRST_TIME = false;
@@ -67,7 +63,7 @@ function registeClickEvent() {
 
 function registerHover() {
   canvas.on('mouse:over', e => setColor(e, '#aaa'));
-  canvas.on('mouse:out', e => setColor(e, 'rgb(255, 136, 2)'));
+  canvas.on('mouse:out', e => setColor(e, 'rgb(255, 164, 59)'));
 }
 
 function setColor(e, color) {
