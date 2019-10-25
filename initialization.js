@@ -1,6 +1,7 @@
 fabric.Object.prototype.selectable = false;
 const canvas = new fabric.Canvas('canvasId');
 const modal = document.getElementById('modal');
+
 modal.addEventListener('click', closeModal);
 document.getElementById('newGame').addEventListener('click', initGame);
 document.getElementById('no').addEventListener('click', closeModal);
@@ -9,9 +10,34 @@ document.getElementById('yes').addEventListener('click', () => {
   initGame();
 });
 
+
+const makeField = (x, y, color = 'white') => {
+  return new fabric.Rect({
+    left: x,
+    top: y,
+    fill: color,
+    width: UNIT,
+    height: UNIT,
+    selectable: false,
+  });
+};
+
+const showFreeFields = (x, y) => (
+  [
+    [x, y - 3],
+    [x + 2, y - 2],
+    [x + 3, y],
+    [x + 2, y + 2],
+    [x, y + 3],
+    [x - 2, y + 2],
+    [x - 3, y],
+    [x - 2, y - 2],
+  ]
+);
+
 let ALL_SQUARES = [];
 let FIRST_TIME = true;
-
+const UNIT = 40;
 initGame();
 
 function registeClickEvent() {
@@ -20,6 +46,10 @@ function registeClickEvent() {
     const coorX = element.left / UNIT;
     const coorY = element.top / UNIT;
     if (FIRST_TIME) {
+      // fabric.Image.fromURL("./assets/images/dot.jpg", (myImg) => {
+      //   const img = myImg.set({ top: coorX, left: coorY, width: '10', height: '10' })
+      //   canvas.add(img)
+      // });
       selectFieldAndMarkOthers(element, coorX, coorY);
       registerHover(coorX, coorY);
       FIRST_TIME = false;
@@ -36,9 +66,8 @@ function registeClickEvent() {
 }
 
 function registerHover() {
-  canvas.on('mouse:over', e => setColor(e, '#aaa')
-  );
-  canvas.on('mouse:out', e => setColor(e, 'pink'));
+  canvas.on('mouse:over', e => setColor(e, '#aaa'));
+  canvas.on('mouse:out', e => setColor(e, 'rgb(255, 136, 2)'));
 }
 
 function setColor(e, color) {
@@ -52,8 +81,6 @@ function setColor(e, color) {
     }
   }
 }
-
-const UNIT = 40;
 
 function initGrid() {
   canvas.clear();
@@ -86,33 +113,9 @@ function initGame() {
   registeClickEvent();
 }
 
-const makeField = (x, y, color = 'white') => {
-  return new fabric.Rect({
-    left: x,
-    top: y,
-    fill: color,
-    width: UNIT,
-    height: UNIT,
-    selectable: false,
-  })
-}
-
-const showFreeFields = (x, y) => (
-  [
-    [x, y - 3],
-    [x + 2, y - 2],
-    [x + 3, y],
-    [x + 2, y + 2],
-    [x, y + 3],
-    [x - 2, y + 2],
-    [x - 3, y],
-    [x - 2, y - 2],
-  ]
-)
-
 function markFields(x, y) {
   if (!ALL_SQUARES[x][y].selected) {
-    ALL_SQUARES[x][y].canvas.set('fill', 'pink');
+    ALL_SQUARES[x][y].canvas.set('fill', 'rgb(255, 164, 59)');
     ALL_SQUARES[x][y].marked = true;
   }
 }
@@ -124,8 +127,8 @@ function removeMarks() {
         square.canvas.set('fill', 'white');
         square.marked = false;
       }
-    })
-  })
+    });
+  });
 }
 
 function selectFieldAndMarkOthers(el, x, y) {
@@ -148,7 +151,7 @@ function propsForLine() {
     stroke: 'black',
     strokeWidth: 1,
     selectable: false,
-  }
+  };
 }
 
 function closeModal() {

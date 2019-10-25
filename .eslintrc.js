@@ -15,7 +15,6 @@ module.exports = {
     "rules": {
         "semi": 2,
         "indent": [
-            "error",
             "tab"
         ],
         "jsx-a11y/anchor-is-valid": [

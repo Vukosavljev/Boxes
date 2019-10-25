@@ -6,18 +6,24 @@
 }
 body {
   position: relative;
+  background: rgb(200, 255, 219);
 }
 button {
   padding: 8px 12px;
   border-radius: 6px;
-  border: 1px solid black;
-  background: rgb(255, 136, 2);
+  border: 0.5px solid rgba(53, 53, 53, 0.3);
+  background: rgb(255, 164, 59);
+}
+button:hover {
+  color: #fff;
+  cursor: pointer;
+  background: rgb(250, 133, 0);
 }
 
 .title {
   text-align: center;
   padding-top: 1rem;
-  color: rgb(255, 136, 2)
+  color: rgb(255, 164, 59);
 }
 
 .button-holder {
@@ -34,7 +40,8 @@ button {
 .canvas-element {
   margin-top: 2rem;
   display: block;
-  border: 1px solid black;
+  border: 0.5px solid rgba(49, 49, 49, 0.2);
+  border-radius: 10px;
 }
 
 .underlay {
@@ -42,7 +49,7 @@ button {
   top: 0;
   width: 100%;
   height: 100vh;
-  background:  rgba(21, 21, 22, .3);
+  background: rgba(21, 21, 22, 0.3);
 }
 
 .modal {
